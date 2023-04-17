@@ -98,7 +98,12 @@ function weather(cityVal){
 #### - Open API 메뉴 내 버스 API(노선조회 및 정류장 정보) 추가
 <details>
 <summary>상세보기</summary>
-  <p align="center"><img src=""></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232422938-4e37c794-24f1-4404-982b-6387efe7e0f3.png"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232422947-c4035908-813e-481e-bc10-dda8a299a1fd.png"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232422959-036beafe-d1cf-47ed-a8cd-82d2a2c4ee03.png"></p>
+<br>
+  <p align="center">공공데이터포털의 버스 노선정보 API와 카카오맵 API를 활용하여 시내버스 노선별 정류장 목록과 지도위치를 표시하였습니다.</p>
+<br>
 </details>
 
 ## 🖥️ 프로젝트 소개

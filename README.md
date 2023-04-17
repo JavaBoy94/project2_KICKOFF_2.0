@@ -9,23 +9,90 @@
 ## [프로젝트 DB ERD](https://drive.google.com/file/d/1JvddvhrdoV1i78wkrrgPDKJa1tq9k7LW/view?usp=share_link)
 
 ## 📅 프로젝트 기간 - 2023.03.14 ~ 2023.04.06
-## 📅 업데이트 사항 (2023.04.10 ~)
+## 📅 업데이트 사항 (2023.04.10 ~ )
 #### - 메인페이지 내 주요 지역별 실시간 날씨 조회기능 추가
 <details>
 <summary>상세보기</summary>
-  <p align="center"><img src=""></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416574-b5eb00e5-9d68-455d-a72c-d4f27104db9f.png"></p>
+<br>
+  <p align="center">Openeathermap API 요청 url의 도시명 파라미터(q)에 템플릿 리터럴(``)을 통해</p>
+  <p align="center">입력받은 파라미터값을 받아 도시별 날씨를 확인할 수 있도록 설정하였습니다.</p>
+  
+  ```html
+  <div class="search">
+      <select name="city" id="city">
+          <option value="seoul">서울</option>
+          <option value="incheon">인천</option>
+          <option value="chuncheon">춘천</option>
+          <option value="daejeon">대전</option>
+          <option value="gwangju">광주</option>
+          <option value="busan">부산</option>
+          <option value="jeju">제주</option>
+      </select>
+      <input type="button" value="날씨조회" onclick="searchCity()">
+  </div>
+  ```
+  
+  ```javascript
+let city = $('#city');
+
+function searchCity(){
+  weather(city.val());
+}
+
+function weather(cityVal){
+  //제이쿼리사용
+    $.getJSON(`https://api.openweathermap.org/data/2.5/weather?q=${cityVal},kr&appid={api key}&lang=kr&units=metric`,
+    function (WeatherResult) {
+    
+      // 파라미터
+      // q : 도시명
+      // appid : apikey (발급필요)
+      // lang : 언어 (kr : 한국어)
+      // units : 온도표시 방식 (metric : 섭씨)
+    
+      // 날씨정보 출력
+      $('.cityName').text(WeatherResult.name);
+      $('.weatherDesc').text(WeatherResult.weather[0].description);
+      $('.nowTemp').text(Math.round(WeatherResult.main.temp,1)+'°C');
+      $('.maxTemp').text(Math.round(WeatherResult.main.temp_max,1)+'°C');
+      $('.minTemp').text(Math.round(WeatherResult.main.temp_min,1)+'°C');
+    
+      //날씨아이콘출력
+      //WeatherResult.weater[0].icon
+      let weathericonUrl =
+          '<img src= "http://openweathermap.org/img/wn/'
+          + WeatherResult.weather[0].icon +
+          '.png" alt="' + WeatherResult.weather[0].description + '"/>'
+    
+      $('.icon').html(weathericonUrl);
+    });
+
+}
+  ```
+
+<br>
 </details>
 
 #### - 메인페이지 내 축구 관련 유튜브 영상목록 추가
 <details>
 <summary>상세보기</summary>
-  <p align="center"><img src=""></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416587-3b5707ea-4293-4ed4-aede-72c2dd322e80.png"></p>
+<br>
+  <p align="center">google의 유튜브 API를 통해 '해외축구 소식'을 키워드로 한 연관 동영상을 무작위로 추출하여 메인페이지에 출력하였습니다.</p>
+<br>
 </details>
 
 #### - Open API 메뉴 내 영화 API(박스오피스 및 영화검색) 추가
 <details>
 <summary>상세보기</summary>
-  <p align="center"><img src=""></p> 
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416591-5576b7ed-04ef-4708-a875-3a92924c6cab.png"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416595-1ed18e8a-8438-4100-b177-78003d31ee8d.png"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416604-ceb5f28e-33a5-4996-861a-4cfd98fe9032.png"></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416600-9b6681bf-2bb6-4050-907f-3f481da40949.png"></p>
+<br>
+  <p align="center">영화진흥위원회(KOBIS) Open API를 활용하여 일간 및 주간 박스오피스와 세부 영화 검색기능을 구현하였습니다.</p>
+<br>
 </details>
 
 #### - Open API 메뉴 내 버스 API(노선조회 및 정류장 정보) 추가

@@ -5,8 +5,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/project2
-    username: root
-    password: 1234
+    username: 
+    password: 
 
 #    CI/CD용 EC2 DB
 #    url: jdbc:mysql://ec2-mysql-db1.c6l0kqlbscuy.ap-northeast-2.rds.amazonaws.com:3306/project2
@@ -32,7 +32,8 @@ spring:
 
   profiles:
     include: oauth
-
-navar.api.client-id: H8paKKaUOVv57BJBdBm9
-navar.api.client-secret: r_8mQX3Nx3
+    
+# workplace, works api
+navar.api.client-id: 
+navar.api.client-secret: 
 

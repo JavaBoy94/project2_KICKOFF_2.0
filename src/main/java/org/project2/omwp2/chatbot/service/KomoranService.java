@@ -2,12 +2,12 @@ package org.project2.omwp2.chatbot.service;
 
 import kr.co.shineware.nlp.komoran.core.Komoran;
 import kr.co.shineware.nlp.komoran.model.KomoranResult;
+import org.project2.omwp2.chatbot.repository.ChatBusRepository;
 import org.project2.omwp2.chatbot.repository.ChatMemberRepository;
+import org.project2.omwp2.chatbot.repository.ChatWeatherRepository;
 import org.project2.omwp2.chatbot.repository.IntentionRepository;
 import org.project2.omwp2.dto.*;
-import org.project2.omwp2.entity.ChatAnswerEntity;
-import org.project2.omwp2.entity.ChatIntentionEntity;
-import org.project2.omwp2.entity.ChatMemberEntity;
+import org.project2.omwp2.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,7 +85,17 @@ public class KomoranService {
         ChatEmailInfo email = analyzeTokenIsEmail(next);
         answer.email(email);//주소인경우에만 주소 데이터
 
-      } else if (token.contains("안녕")) {
+      }else if (token.contains("날씨")) {
+        // 날씨 키워드가 있으면 -> analyzeTokenIsWeather(next)
+        ChatWeatherInfo weather = analyzeTokenIsWeather(next);
+        answer.weather(weather);//날씨인경우에만 날씨 데이터
+
+      }else if (token.contains("버스")) {
+        // 날씨 키워드가 있으면 -> analyzeTokenIsBus(next)
+        ChatBusInfo bus = analyzeTokenIsBus(next);
+        answer.bus(bus);//날씨인경우에만 버스 데이터
+
+      }else if (token.contains("안녕")) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일");
         chatMessageDto.today(today.format(dateFormatter));//처음 접속할때만 날짜표기
       }
@@ -223,5 +233,69 @@ public class KomoranService {
     }
     return null;
   }
+
+  //2차 - 1차의 '날씨' 키워드가 있으면 지역 검색
+  @Autowired
+  ChatWeatherRepository weather1;
+
+  private ChatWeatherInfo analyzeTokenIsWeather(Set<String> next) {
+
+    for (String cityVal : next) {
+
+      Optional<ChatWeatherEntity> m = weather1.findByCityVal(cityVal);
+
+      if (m.isEmpty()) continue;
+      //존재하면
+      String humidity = m.get().getHumidity()+" %";  // 습도
+      String wind = m.get().getWind()+" m/s";        // 바람
+      String cloud = m.get().getCloud()+" %";        // 구름
+      String temp_min = m.get().getTemp_min()+" º";  // 최저온도
+      String temp_max = m.get().getTemp_max()+" º";  // 최고온도
+      String temp = m.get().getTemp()+" º";          // 현재온도
+      String weather_description = m.get().getWeather_description();  // 현재 날씨 상태
+
+
+      return ChatWeatherInfo.builder()
+              .humidity(humidity)
+              .wind(wind)
+              .cloud(cloud)
+              .temp_min(temp_min)
+              .temp_max(temp_max)
+              .temp(temp)
+              .weather_description(weather_description)
+              .build();
+    }
+    return null;
+  }
+
+  //2차 - 1차의 '이메일' 키워드가 있으면 이름 검색
+  @Autowired
+  ChatBusRepository bus1;
+
+  private ChatBusInfo analyzeTokenIsBus(Set<String> next) {
+
+    for (String busRouteAbrv : next) {
+
+      Optional<ChatBusEntity> m = bus1.findByBusRouteAbrv(busRouteAbrv);
+
+      if (m.isEmpty()) continue;
+      //존재하면
+      String stStationNm = m.get().getStStationNm();   // 버스기점
+      String edStationNm = m.get().getEdStationNm();   // 버스종점
+      String firstBusTm = m.get().getFirstBusTm();     // 첫차시간
+      String lastBusTm = m.get().getLastBusTm();       // 막차시간
+      String term = m.get().getTerm();                 // 배차간격
+
+      return ChatBusInfo.builder()
+              .stStationNm(stStationNm)
+              .edStationNm(edStationNm)
+              .firstBusTm(firstBusTm)
+              .lastBusTm(lastBusTm)
+              .term(term)
+              .build();
+    }
+    return null;
+  }
+
   // 추가 시 위에 입력*****************************************************************************
 }

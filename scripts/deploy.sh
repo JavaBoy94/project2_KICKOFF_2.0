@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-REPOSITORY=/home/ec2-user/cicd_project3
+REPOSITORY=/home/ec2-user/cicd_projectex
 cd $REPOSITORY
 
 # 베폴더
-APP_NAME=fork_04_05
+APP_NAME=cicd
 JAR_NAME=$(ls $REPOSITORY/build/libs/ | grep 'SNAPSHOT.jar' | tail -n 1)
 JAR_PATH=$REPOSITORY/build/libs/$JAR_NAME
 

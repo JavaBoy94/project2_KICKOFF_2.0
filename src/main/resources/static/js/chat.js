@@ -178,7 +178,7 @@ function weatherPost(result) {
 	});
 }
 
-const busDetail = document.querySelector('.chatBus-detail')
+const chatBusDetail = document.querySelector('.chatBus-detail')
 //const tbody = document.querySelector('.chatBus-detail table tbody')
 let html2 = "";
 

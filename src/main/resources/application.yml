@@ -4,14 +4,14 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/project2
-#    username: root
-#    password: 1234
+    url: jdbc:mysql://localhost:3306/project2
+    username: root
+    password: 1234
 
 #    CI/CD용 EC2 DB
-    url: jdbc:mysql://ec2-mysql-db1.c6l0kqlbscuy.ap-northeast-2.rds.amazonaws.com:3306/project2
-    username: user1
-    password: ghdfhr1579
+#    url: jdbc:mysql://ec2-mysql-db1.c6l0kqlbscuy.ap-northeast-2.rds.amazonaws.com:3306/project2
+#    username: user1
+#    password: ghdfhr1579
 
   jpa:
     database: mysql

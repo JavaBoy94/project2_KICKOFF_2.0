@@ -2,7 +2,9 @@ package org.project2.omwp2.chatbot.controller;
 
 import kr.co.shineware.nlp.komoran.constant.DEFAULT_MODEL;
 import kr.co.shineware.nlp.komoran.core.Komoran;
+import org.project2.omwp2.chatbot.repository.ChatBusRepository;
 import org.project2.omwp2.chatbot.repository.ChatMemberRepository;
+import org.project2.omwp2.chatbot.repository.ChatWeatherRepository;
 import org.project2.omwp2.chatbot.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -31,10 +33,16 @@ public class KomoranConfig {
 
   // DB의 부서명, 사원명
   @Autowired
-  DepartmentRepository departmentRepository;//부서
+  DepartmentRepository departmentRepository;  //부서
 
   @Autowired
-  ChatMemberRepository memberRepository;// 회원
+  ChatMemberRepository memberRepository;      // 회원
+
+  @Autowired
+  ChatWeatherRepository weatherRepository;    // 날씨
+
+  @Autowired
+  ChatBusRepository busRepository;    // 버스
 
   @Bean
   Komoran komoran() {
@@ -80,6 +88,24 @@ public class KomoranConfig {
       keys.add(e.getCName());
       // 이이름	NNP
       // 김이름	NNP
+    });
+
+    // 도시명을 set에 저장
+    weatherRepository.findAll().forEach(e ->{
+      keys.add(e.getCityVal());
+      // 서울 NNP
+      // 춘천 NNP
+      // 대전 NNP
+      // 대구 NNP
+      // 광주 NNP
+      // 부산 NNP
+      // 제주 NNP
+    });
+
+    //버스명을 set에 저장
+     busRepository.findAll().forEach(e -> {
+      keys.add(e.getBusRouteAbrv());
+      // 버스번호 NNP
     });
 
     //저장된 명단을 고유명사로 파일에 등록

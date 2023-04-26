@@ -73,3 +73,4 @@ function weather(cityVal){
 (()=>{
   weather('seoul');
 })()
+

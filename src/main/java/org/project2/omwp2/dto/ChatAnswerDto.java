@@ -13,11 +13,13 @@ public class ChatAnswerDto {
 
   private long no;
   private String content;
-  private String keyword; // 키워드
-  private ChatPhoneInfo phone;  // 전화번호 정보
-  private ChatAddressInfo address; // 주소 정보
-  private ChatPositionInfo position; // 포지션 정보
-  private ChatEmailInfo email; // 이메일 정보
+  private String keyword;             // 키워드
+  private ChatPhoneInfo phone;        // 전화번호 정보
+  private ChatAddressInfo address;    // 주소 정보
+  private ChatPositionInfo position;  // 포지션 정보
+  private ChatEmailInfo email;        // 이메일 정보
+  private ChatWeatherInfo weather;    // 날씨 정보
+  private ChatBusInfo bus;            // 버스 정보
 
   public ChatAnswerDto phone(ChatPhoneInfo phone){
     this.phone=phone;
@@ -36,6 +38,16 @@ public class ChatAnswerDto {
 
   public ChatAnswerDto email(ChatEmailInfo email){
     this.email=email;
+    return this;
+  }
+
+  public ChatAnswerDto weather(ChatWeatherInfo weather){
+    this.weather=weather;
+    return this;
+  }
+
+  public ChatAnswerDto bus(ChatBusInfo bus){
+    this.bus=bus;
     return this;
   }
 

@@ -8,7 +8,7 @@
     <script th:src="@{/js/chat.js}"></script>
     <!-- 날씨 -->
     <th:block th:if="${key} == null">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" defer></script>
     </th:block>
         <script th:src="@{/js/weather.js}" defer></script>
         <div class="left-con">
@@ -69,7 +69,8 @@
                                 <li>
                                     <a th:href="@{/memberSchedule/memberSchedule}">개인일정 관리</a>
                                 </li>
-                                <li sec:authorize="hasRole('ADMIN')">
+<!--                                <li sec:authorize="hasRole('ADMIN')">-->
+                                <li>
                                     <a th:href="@{/teamSchedule/teamSchedule}">공식일정 관리</a>
                                 </li>
                             </ul>
@@ -164,9 +165,13 @@
                                 <li>
                                     <a th:href="@{/bus/index}">버스 API</a>
                                 </li>
+                                <li>
+                                    <a th:href="@{/weather/index}">날씨 API</a>
+                                </li>
                             </ul>
                         </li>
-                        <li sec:authorize="hasRole('ADMIN')">
+<!--                        <li sec:authorize="hasRole('ADMIN')">-->
+                        <li>
                             <a href="#">관리자 메뉴</a>
                             <ul class="sub">
                                 <li>

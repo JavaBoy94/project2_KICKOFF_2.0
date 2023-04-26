@@ -10,7 +10,7 @@
 
 ## 📅 프로젝트 기간 - 2023.03.14 ~ 2023.04.06
 ## 📅 업데이트 사항 (2023.04.10 ~ )
-#### - 지역별 실시간 날씨 조회 및 지도 연동 추가
+#### - 지역별 실시간 날씨 조회 및 지도 API 연동 추가
 <details>
 <summary>상세보기</summary>
   <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416574-b5eb00e5-9d68-455d-a72c-d4f27104db9f.png"></p>

@@ -10,7 +10,7 @@
 
 ## 📅 프로젝트 기간 - 2023.03.14 ~ 2023.04.06
 ## 📅 업데이트 사항 (2023.04.10 ~ )
-#### - 메인페이지 내 주요 지역별 실시간 날씨 조회기능 추가
+#### - 지역별 실시간 날씨 조회 및 지도 연동 추가
 <details>
 <summary>상세보기</summary>
   <p align="center"><img src="https://user-images.githubusercontent.com/116870617/232416574-b5eb00e5-9d68-455d-a72c-d4f27104db9f.png"></p>
@@ -71,6 +71,10 @@ function weather(cityVal){
 }
   ```
 
+<br>
+  <p align="center"><img src="https://user-images.githubusercontent.com/116870617/234501832-16f62d4e-7064-47c3-8637-fbbf8183ca85.png"></p>
+<br>
+  <p align="center">해당 날씨정보로부터 위도(lat),경도(lon)을 받아 kakaomap API와 연동하여 지역을 표시하였습니다.</p>
 <br>
 </details>
 

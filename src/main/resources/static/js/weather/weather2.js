@@ -16,7 +16,8 @@ function weatherFn(){
 
 function weather2(cityVal){
   // 템플릿리터럴(``) => 문자열과 변수 사용이 한번에 가능
-  let appUrl2 = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityVal}&lang=kr&appid=5a87979705c7dd0e87fc7cfda0976f92`;
+  let key = "";
+  let appUrl2 = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityVal}&lang=kr&appid=${key}`;
 
 
   // ajax 사용

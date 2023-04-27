@@ -466,7 +466,7 @@ public class MemberController {
 <br>
   <p align="center"><img src="https://user-images.githubusercontent.com/116870617/231952118-a699b845-1817-46b1-80d9-b0b501df3455.png"></p>
 <br>
-  <p align="center">회원수정시 기존의 회원ID값을 넘겨줌으로써, save 메소드가 수정으로 처리될 수 있도록 하였습니다.</p>
+  <p align="center">회원수정시 기존의 회원ID값을 넘겨줌으로써, save 메소드가 INSERT가 아닌 UPDATE로 처리될 수 있도록 하였습니다.</p>
   <p align="center">프로필 사진을 수정하지 않을 경우 현재 저장파일명을 계속 사용하여 기존 이미지를 그대로 사용하도록 하였습니다.</p>
   
 ```java
